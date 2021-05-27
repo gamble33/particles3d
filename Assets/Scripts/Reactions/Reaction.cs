@@ -9,8 +9,8 @@ public class Reaction
 {
     public string name; // Name to be able to find reactions easier
     
-    public List<GameObject> reactants;
-    public List<GameObject> products;
+    public List<Particle> reactants;
+    public List<Particle> products;
 
     public float activationEnergy; // The amount of kinetic energy required for a successful collision
 

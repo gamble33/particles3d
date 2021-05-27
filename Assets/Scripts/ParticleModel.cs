@@ -8,10 +8,9 @@ using Random = UnityEngine.Random;
 public class ParticleModel : MonoBehaviour
 {
 
-    public GameObject particle;
+    public Particle[] particles;
     public Transform particleHolder;
     public ParticleIDModel particleIDModel;
-    public CollisionHandler collisionHandler;
 
     /// <summary>
     /// This function instantiates a particle by using 3 Random functions to determine
@@ -31,8 +30,8 @@ public class ParticleModel : MonoBehaviour
             Random.Range(edgePoints[0].position.y, edgePoints[1].position.y),
             Random.Range(edgePoints[0].position.z, edgePoints[1].position.z));
         
-        GameObject newParticle = Instantiate(particle, randomSpawnLocation, Quaternion.identity, particleHolder);
-        newParticle.GetComponent<Particle>().SetupParticle(particleIDModel.GetNewParticleID(), collisionHandler);
+        GameObject newParticle = Instantiate(particles[Random.Range(0,particles.Length)].gameObject, randomSpawnLocation, Quaternion.identity, particleHolder);
+        newParticle.GetComponent<Particle>().SetupParticle(particleIDModel.GetNewParticleID());
     }
     
     
@@ -85,7 +84,7 @@ public class ParticleModel : MonoBehaviour
         foreach (Transform particle in particleHolder)
         {
             if (!particle.CompareTag("particle")) continue;
-            particle.GetComponent<Particle>().SetupParticle(particleIDModel.GetNewParticleID(), collisionHandler);
+            particle.GetComponent<Particle>().SetupParticle(particleIDModel.GetNewParticleID());
         }
         
     }

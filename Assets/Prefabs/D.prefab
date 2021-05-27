@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2619741074692727897}
   - component: {fileID: 2619741074692727876}
   m_Layer: 0
-  m_Name: Particle
+  m_Name: D
   m_TagString: particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2fe4fda4aa226a947a825a448213d4f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,5 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40a8b506554d13488fe46f54a8b150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nature: {fileID: 2100000, guid: 2fe4fda4aa226a947a825a448213d4f6, type: 2}
   startVelocity: {x: 0, y: 0, z: 1}
+  natureName: D
   rb: {fileID: 2619741074692727897}
+  particleID: 

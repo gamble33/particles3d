@@ -10,12 +10,13 @@ public class Particle : MonoBehaviour
      * TODO: Make particle a prefab.
      * TODO: add a unique ID to each particle (for collisionHandler naming system)
      */
-    [Header("Variables")]
-    public GameObject nature; // The nature of the particle is the type of particle that it is (e.g. A / B)
-
+    [Header("Variables")] 
+    [SerializeField] private Material nature; // The nature of the particle is the type of particle that it is (e.g. A / B)
     public Vector3 startVelocity;
+    public string natureName;
 
-    [Header("References")] public Rigidbody rb;
+    [Header("References")] 
+    public Rigidbody rb;
     
     /// <summary>
     /// Kinetic Energy [JOULES] (0.5 * mass * (velocity * velocity)
@@ -23,10 +24,10 @@ public class Particle : MonoBehaviour
     public float KineticEnergy { get; set; }
     public float PotentialEnergy { get; set; }
 
-    private CollisionHandler _collisionHandler;
     private Vector3 _lastVelocity;
     [SerializeField] private string particleID;
-
+    private MeshRenderer _meshRenderer;
+        
     public void SetMyVelocity(Vector3 velocity)
     {
         rb.velocity = velocity;
@@ -43,13 +44,21 @@ public class Particle : MonoBehaviour
     /// The collisionHandler is passed in so the particles can talk to it while in the simulation.
     /// </summary>
     /// <param name="id"></param>
-    /// <param name="_collisionHandler"></param>
-    public void SetupParticle(String id, CollisionHandler _collisionHandler)
+    public void SetupParticle(String id)
     {
         this.SetParticleID(id);
-        this._collisionHandler = _collisionHandler;
         Debug.Log(particleID);
-        Debug.Log(this._collisionHandler);
+    }
+
+    public Material GetNature()
+    {
+        return this.nature; 
+    }
+
+    public void SetNature(Material newNature)
+    {
+        this.nature = newNature;
+        this._meshRenderer.material = this.nature;
     }
 
     // Start is called before the first frame update
@@ -60,6 +69,10 @@ public class Particle : MonoBehaviour
         rb.velocity = direction;
         Debug.Log(particleID);
         rb.mass = 2f;
+
+        this._meshRenderer = GetComponent<MeshRenderer>();
+        _meshRenderer.material = this.nature;
+
     }
 
 
@@ -121,8 +134,7 @@ public class Particle : MonoBehaviour
     private void SetParticleCollisionVelocity(Collision collidedParticle)
     {
         Particle collided = collidedParticle.transform.GetComponent<Particle>();
-        _collisionHandler.SetParticlesResultantVelocities(this, collided, _lastVelocity, rb.mass);
-        return;
+        CollisionHandler.Instance.SetParticlesResultantVelocities(this, collided, _lastVelocity, rb.mass);
     }
 
     private void SetParticleID(string _id)

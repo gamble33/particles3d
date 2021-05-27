@@ -17,7 +17,7 @@ public class ReactionHandler : MonoBehaviour
     {  
         foreach(Reaction reaction in reactions)
         {
-            if(reaction.reactants.Equals(potentialReactants))
+            if(CheckEqualParticles(reaction.reactants, potentialReactants))
             {
                 // Collided particles are reactants of a certain reaction
                 
@@ -31,10 +31,38 @@ public class ReactionHandler : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Checks that two sets of particles are equal to each other
+    /// </summary>
+    /// <param name="set1">First set of particles</param>
+    /// <param name="set2">Second set of particles</param>
+    /// <returns></returns>
+    private bool CheckEqualParticles(List<Particle> set1, List<Particle> set2)
+    {
+        if (set1.Count != set2.Count) return false; // TODO: Allow different length particle arrays
+        foreach(Particle particleSet1 in set1)
+        {
+            bool particleFound = false; // Flag (IK -__-)
+            foreach (Particle particleSet2 in set2)
+            {
+                if (particleSet2.natureName == particleSet1.natureName) particleFound = true;
+            }
+
+            if (!particleFound) return false;
+        }
+
+        return true;
+    }
 
     private void React(List<Particle> reactants, Reaction reaction)
     {
-        // TODO: React
+        // TODO: Implement object pooling
+        
+        reactants[0].SetNature(reaction.products[0].GetNature());
+        reactants[0].natureName = reaction.products[0].natureName;
+        reactants[1].SetNature(reaction.products[1].GetNature());
+        reactants[1].natureName = reaction.products[1].natureName;
     }
     
     /// <summary>

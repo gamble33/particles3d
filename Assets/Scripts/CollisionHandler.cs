@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
+
+    public static CollisionHandler Instance;
+
+    [SerializeField] private ReactionHandler reactionHandler;
+
     private Dictionary<string, ParticleStats> collidedParticles = new Dictionary<string, ParticleStats>();
 
     /// <summary>
@@ -40,6 +45,10 @@ public class CollisionHandler : MonoBehaviour
             collidedParticles.Remove(collided.GetParticleID());
             collidedParticles.Remove(particle.GetParticleID());
         }
+
+        List<Particle> potentialReactants = new List<Particle> {particle, collided};
+        reactionHandler.CheckForReaction(potentialReactants);
+
     }
     
     /// <summary>
@@ -57,6 +66,13 @@ public class CollisionHandler : MonoBehaviour
         float velocityParticle2 = ((2*particle1Mass)/(particle1Mass + particle2Mass)) * particle1Velocity + ((particle2Mass - particle1Mass) / (particle1Mass + particle2Mass)) * particle2Velocity;
         
         return new Vector2(velocityParticle1, velocityParticle2);
+    }
+
+    private void Awake()
+    {
+        // Singleton
+        if (Instance == null) Instance = this;
+        else if (Instance != this) Destroy(this);
     }
     
 }
