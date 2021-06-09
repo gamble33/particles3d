@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2619741074692727877}
+  - component: {fileID: 2619741074692727876}
   - component: {fileID: 2619741074692727898}
   - component: {fileID: 2619741074692727899}
   - component: {fileID: 2619741074692727896}
   - component: {fileID: 2619741074692727897}
-  - component: {fileID: 2619741074692727876}
   m_Layer: 0
-  m_Name: D
+  m_Name: Particle
   m_TagString: particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,6 +35,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2619741074692727876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2619741074692727902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40a8b506554d13488fe46f54a8b150a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startVelocity: {x: 0, y: 0, z: 1}
+  natureName: A
+  rb: {fileID: 2619741074692727897}
+  meshRenderer: {fileID: 2619741074692727899}
+  particleID: 
 --- !u!33 &2619741074692727898
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -54,6 +71,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -62,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2fe4fda4aa226a947a825a448213d4f6, type: 2}
+  - {fileID: 2100000, guid: 6c62c341acb52c641bd52ed97f562d5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,20 +131,3 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2619741074692727876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2619741074692727902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d40a8b506554d13488fe46f54a8b150a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nature: {fileID: 2100000, guid: 2fe4fda4aa226a947a825a448213d4f6, type: 2}
-  startVelocity: {x: 0, y: 0, z: 1}
-  natureName: D
-  rb: {fileID: 2619741074692727897}
-  particleID: 

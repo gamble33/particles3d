@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using Random = UnityEngine.Random;
 
 public class Particle : MonoBehaviour
@@ -10,24 +11,35 @@ public class Particle : MonoBehaviour
      * TODO: Make particle a prefab.
      * TODO: add a unique ID to each particle (for collisionHandler naming system)
      */
-    [Header("Variables")] 
-    [SerializeField] private Material nature; // The nature of the particle is the type of particle that it is (e.g. A / B)
-    public Vector3 startVelocity;
+    [Header("Variables")] public Vector3 startVelocity;
+
     public string natureName;
 
-    [Header("References")] 
-    public Rigidbody rb;
-    
+    [Header("References")] public Rigidbody rb;
+    public MeshRenderer meshRenderer;
+
     /// <summary>
     /// Kinetic Energy [JOULES] (0.5 * mass * (velocity * velocity)
     /// </summary>
     public float KineticEnergy { get; set; }
+
     public float PotentialEnergy { get; set; }
 
+    public ParticleType ParticleType
+    {
+        get => _particleType;
+
+        set
+        {
+            _particleType = value;
+            InitParticleSettings();
+        }
+    }
+
+    private ParticleType _particleType;
     private Vector3 _lastVelocity;
     [SerializeField] private string particleID;
-    private MeshRenderer _meshRenderer;
-        
+
     public void SetMyVelocity(Vector3 velocity)
     {
         rb.velocity = velocity;
@@ -39,6 +51,21 @@ public class Particle : MonoBehaviour
     }
 
     /// <summary>
+    /// Adds kinetic energy to the particle and changes its velocity
+    /// </summary>
+    /// <param name="ke">The kinetic energy being added</param>
+    public void AddKineticEnergy(float ke)
+    {
+        KineticEnergy += ke;
+        
+        // Ratio between the new and old velocity
+        float ratio = (float) Math.Sqrt((float) Math.Pow(rb.velocity.magnitude, 2) + 2 * ke / rb.mass) /
+                      rb.velocity.magnitude;
+        
+        rb.velocity *= ratio;
+    }
+
+    /// <summary>
     /// This method is called when a new instance of a particle is Instantiated();
     /// an ID made by the ParticleIDModel is passed in, to keep a unique id for each particle.
     /// The collisionHandler is passed in so the particles can talk to it while in the simulation.
@@ -47,18 +74,15 @@ public class Particle : MonoBehaviour
     public void SetupParticle(String id)
     {
         this.SetParticleID(id);
-        Debug.Log(particleID);
     }
 
-    public Material GetNature()
+    /// <summary>
+    /// Calculates and sets kinetic energy of the particle based on velocity
+    /// </summary>
+    public void CalculateKineticEnergy()
     {
-        return this.nature; 
-    }
-
-    public void SetNature(Material newNature)
-    {
-        this.nature = newNature;
-        this._meshRenderer.material = this.nature;
+        // KE = 1/2 * m * (v * v)
+        this.KineticEnergy = (float) (0.5 * rb.mass * Math.Pow(rb.velocity.magnitude, 2));
     }
 
     // Start is called before the first frame update
@@ -67,12 +91,9 @@ public class Particle : MonoBehaviour
         Vector3 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         rb.velocity = direction;
-        Debug.Log(particleID);
         rb.mass = 2f;
 
-        this._meshRenderer = GetComponent<MeshRenderer>();
-        _meshRenderer.material = this.nature;
-
+        CalculateKineticEnergy();
     }
 
 
@@ -81,10 +102,6 @@ public class Particle : MonoBehaviour
         _lastVelocity = rb.velocity;
     }
 
-    private void Update()
-    {
-        if(!rb.velocity.Equals(_lastVelocity)) CalculateKineticEnergy();
-    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -96,15 +113,6 @@ public class Particle : MonoBehaviour
         {
             rb.velocity = GetWallCollisionVelocity(other, _lastVelocity);
         }
-    }
-    
-    /// <summary>
-    /// Calculates and sets kinetic energy of the particle based on velocity
-    /// </summary>
-    private void CalculateKineticEnergy()
-    {
-        // KE = 1/2 * m * (v * v)
-        this.KineticEnergy = (float) (0.5 * rb.mass * Math.Pow(rb.velocity.magnitude, 2));
     }
 
 
@@ -137,8 +145,14 @@ public class Particle : MonoBehaviour
         CollisionHandler.Instance.SetParticlesResultantVelocities(this, collided, _lastVelocity, rb.mass);
     }
 
-    private void SetParticleID(string _id)
+    private void SetParticleID(string id)
     {
-        particleID = _id;
+        particleID = id;
+    }
+
+    private void InitParticleSettings()
+    {
+        meshRenderer.material = _particleType.material;
+        PotentialEnergy = _particleType.potentialEnergy;
     }
 }

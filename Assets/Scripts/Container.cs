@@ -10,16 +10,5 @@ public class Container : MonoBehaviour
     
     //Array of two edge points of box (TODO: make spawning work with all sides rather than edge points as some containers may not be cubes)
     public Transform[] edgePoints;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

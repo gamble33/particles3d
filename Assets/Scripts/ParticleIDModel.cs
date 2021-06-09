@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class ParticleIDModel : MonoBehaviour
 {
-    private int particleCount = -1;
+    private int _particleCount = -1;
 
     public string GetNewParticleID()
     {
-        particleCount++;
-        return $"PARTICLE{particleCount.ToString()}";
+        _particleCount++;
+        return $"PARTICLE{_particleCount.ToString()}";
         
     }
 

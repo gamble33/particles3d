@@ -1,25 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class SimulationModel : MonoBehaviour
 {
+    [SerializeField] private double a;
+    [SerializeField] private int energies;
 
-    public ParticleModel particleModel;
+    private double _aLast;
+    private double _energiesLast;
+
+    [Header("References")] public ParticleModel particleModel;
     public ContainerModel containerModel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void SpawnParticle()
     {
@@ -31,6 +26,30 @@ public class SimulationModel : MonoBehaviour
     {
         containerModel.NextContainer();
         particleModel.RemoveNonContainerParticles(containerModel.GetCurrentContainer());
-        
+    }
+
+    private void Start()
+    {
+        CalculateDistribution();
+    }
+
+    private void CalculateDistribution()
+    {
+        BoltzmannDistribution distribution = new BoltzmannDistribution(energies, a);
+        DistributionGraph.Instance.SetGraph(distribution.GetProbabilities());
+    }
+
+    private void Update()
+    {
+        if (_aLast != a || _energiesLast != energies)
+        {
+            CalculateDistribution();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        _aLast = a;
+        _energiesLast = energies;
     }
 }

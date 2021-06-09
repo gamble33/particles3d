@@ -180,6 +180,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -234,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &94601032
 Transform:
   m_ObjectHideFlags: 0
@@ -337,6 +338,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -432,6 +434,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -527,6 +530,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -622,6 +626,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -689,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e18bdb6cade234cb3285f7bf46c263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reactionHandler: {fileID: 0}
+  reactionHandler: {fileID: 1878014834}
 --- !u!4 &338790297
 Transform:
   m_ObjectHideFlags: 0
@@ -761,6 +766,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -856,6 +862,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -970,6 +977,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &657149792
@@ -1079,6 +1087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728000b45b2dd26419da34b581ac11ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 10
+  energies: 50
   particleModel: {fileID: 825402178}
   containerModel: {fileID: 745993650}
 --- !u!114 &825402178
@@ -1093,9 +1103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b4c68542d4a534fa80cf5cd071dc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles:
-  - {fileID: 2619741074692727876, guid: f1ab88392e252af47a1b9ba5b80984d4, type: 3}
-  - {fileID: 2619741074692727876, guid: 40c52b59cb276ec46b9bb2b6c2c1490d, type: 3}
+  particleTypes:
+  - {fileID: 11400000, guid: 1c6e65a6a5917e045acfc4736f078472, type: 2}
+  - {fileID: 11400000, guid: 8b51ee7ca7f7d0b46b3958ae1b3ace71, type: 2}
+  particle: {fileID: 2619741074692727902, guid: f1ab88392e252af47a1b9ba5b80984d4, type: 3}
   particleHolder: {fileID: 1719997245}
   particleIDModel: {fileID: 825402179}
 --- !u!114 &825402179
@@ -1167,6 +1178,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1262,6 +1274,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1441,6 +1454,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1536,6 +1550,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1581,7 +1596,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 0
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
@@ -1603,7 +1618,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -1620,7 +1635,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 0
   m_PVRFilteringMode: 2
   m_PVRDenoiserTypeDirect: 0
@@ -1692,6 +1707,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1787,6 +1803,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1825,6 +1842,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348810485}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1399982623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399982624}
+  - component: {fileID: 1399982625}
+  - component: {fileID: 1399982626}
+  m_Layer: 0
+  m_Name: Debug GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1399982624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399982623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.061477, y: -25.84204, z: -0.020997748}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1399982625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399982623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902b767a45c917245b420593501210c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawInBuild: 0
+  displayGraphs: 1
+  displayLogs: 1
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.7}
+  graphs: []
+--- !u!114 &1399982626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399982623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7667fcfd341ef4a9e3dfc7081ccef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1497622160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,7 +1919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1497622161
 Transform:
   m_ObjectHideFlags: 0
@@ -1944,6 +2022,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2069,6 +2148,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2139,20 +2219,20 @@ MonoBehaviour:
   reactions:
   - name: A + B --> C + D
     reactants:
-    - {fileID: 2619741074692727876, guid: f1ab88392e252af47a1b9ba5b80984d4, type: 3}
-    - {fileID: 2619741074692727876, guid: 40c52b59cb276ec46b9bb2b6c2c1490d, type: 3}
+    - {fileID: 11400000, guid: 1c6e65a6a5917e045acfc4736f078472, type: 2}
+    - {fileID: 11400000, guid: 8b51ee7ca7f7d0b46b3958ae1b3ace71, type: 2}
     products:
-    - {fileID: 2619741074692727876, guid: 1a9a2d04a7d6be74eb4285b942cebd3c, type: 3}
-    - {fileID: 2619741074692727876, guid: 3b7e967a6e05d2148a0e1697dbc899d7, type: 3}
-    activationEnergy: 1
-  - name: C +D --> A + B
+    - {fileID: 11400000, guid: 13668a51bb6fc7946b17a2cf4bd483ed, type: 2}
+    - {fileID: 11400000, guid: 4af266cb8f5fc8448b9177f2faa92952, type: 2}
+    transitionState: 28
+  - name: C + D --> A + B
     reactants:
-    - {fileID: 2619741074692727876, guid: 1a9a2d04a7d6be74eb4285b942cebd3c, type: 3}
-    - {fileID: 2619741074692727876, guid: 3b7e967a6e05d2148a0e1697dbc899d7, type: 3}
+    - {fileID: 11400000, guid: 13668a51bb6fc7946b17a2cf4bd483ed, type: 2}
+    - {fileID: 11400000, guid: 4af266cb8f5fc8448b9177f2faa92952, type: 2}
     products:
-    - {fileID: 2619741074692727876, guid: f1ab88392e252af47a1b9ba5b80984d4, type: 3}
-    - {fileID: 2619741074692727876, guid: 40c52b59cb276ec46b9bb2b6c2c1490d, type: 3}
-    activationEnergy: 1
+    - {fileID: 11400000, guid: 1c6e65a6a5917e045acfc4736f078472, type: 2}
+    - {fileID: 11400000, guid: 8b51ee7ca7f7d0b46b3958ae1b3ace71, type: 2}
+    transitionState: 28
 --- !u!4 &1878014835
 Transform:
   m_ObjectHideFlags: 0
@@ -2225,6 +2305,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

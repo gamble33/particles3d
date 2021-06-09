@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 public class ParticleModel : MonoBehaviour
 {
 
-    public Particle[] particles;
+    public ParticleType[] particleTypes;
+    public GameObject particle;
     public Transform particleHolder;
     public ParticleIDModel particleIDModel;
 
@@ -30,8 +31,10 @@ public class ParticleModel : MonoBehaviour
             Random.Range(edgePoints[0].position.y, edgePoints[1].position.y),
             Random.Range(edgePoints[0].position.z, edgePoints[1].position.z));
         
-        GameObject newParticle = Instantiate(particles[Random.Range(0,particles.Length)].gameObject, randomSpawnLocation, Quaternion.identity, particleHolder);
-        newParticle.GetComponent<Particle>().SetupParticle(particleIDModel.GetNewParticleID());
+        GameObject newParticleObject = Instantiate(particle, randomSpawnLocation, Quaternion.identity, particleHolder);
+        Particle newParticle = newParticleObject.GetComponent<Particle>();
+        newParticle.SetupParticle(particleIDModel.GetNewParticleID());
+        newParticle.ParticleType = particleTypes[Random.Range(0, particleTypes.Length)];
     }
     
     
@@ -61,20 +64,20 @@ public class ParticleModel : MonoBehaviour
     /// <summary>
     /// Thsi function uses two conditionals to check if an object is outside of an area marked by 2 edge points.
     /// </summary>
-    /// <param name="_object"></param>
+    /// <param name="object"></param>
     /// <param name="edgePoints"></param>
     /// <returns></returns>
-    private bool CheckObjectOustideEdgePoints(Transform _object, Transform[] edgePoints)
+    private bool CheckObjectOustideEdgePoints(Transform @object, Transform[] edgePoints)
     {
 
         Vector3 minPoint = edgePoints[0].position;
         Vector3 maxPoint = edgePoints[1].position;
 
-        if (_object.position.x < minPoint.x || _object.position.y < minPoint.y ||
-            _object.position.z < minPoint.z) return true;
+        if (@object.position.x < minPoint.x || @object.position.y < minPoint.y ||
+            @object.position.z < minPoint.z) return true;
         
-        if (_object.position.x > maxPoint.x || _object.position.y > maxPoint.y ||
-            _object.position.z > maxPoint.z) return true;
+        if (@object.position.x > maxPoint.x || @object.position.y > maxPoint.y ||
+            @object.position.z > maxPoint.z) return true;
         
         return false;
     }
